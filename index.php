@@ -89,19 +89,19 @@
           <div class="col-lg-8 col-md-6 ftco-animate d-flex align-items-center">
           	<div class="text text-center">
           		<span class="subheading">Hey! We Are</span>
-		  				<h1>Ronaldo <span>Group</span> </h1>
-	  				<h2>My Teams
-						  <span
-						     class="txt-rotate"
-						     data-period="500"
-						     data-rotate='[ "Rinto.", "Hardus.", "Edon."]'></span>
-						</h2>
-					</div>
-            </div>
-          </div>
-        </div>
-      </div>
-      <div class="mouse">
+					<h1>Ronaldo <span>Group</span> </h1>
+				<h2>My Teams
+					  <span
+					     class="txt-rotate"
+					     data-period="500"
+					     data-rotate='[ "Rinto.", "Hardus.", "Edon."]'></span>
+					</h2>
+				</div>
+			    </div>
+			  </div>
+			</div>
+			</div>
+			<div class="mouse">
 				<a href="#" class="mouse-icon">
 					<div class="mouse-wheel"><span class="ion-ios-arrow-round-down"></span></div>
 				</a>
@@ -121,21 +121,100 @@
     			<div class="col-md-6 col-lg-6 pl-md-5 py-5">
     				<div class="row justify-content-start pb-3">
 		          <div class="col-md-12 heading-section ftco-animate">
-						<?php 
-				         	 	$sql = "SELECT * FROM biodata WHERE id=2";
-				         	 	$result = mysqli_query($con,$sql);
-				         	 	$rowAbout = mysqli_fetch_assoc($result);
-				         ?>
-		          	<h1 class="big">About</h1>
+						
+		          <h1 class="big">About</h1>
 		            <h2 class="mb-4">About Us</h2>
-		          	<?php echo $rowAbout['About Me']; ?>
 		            <ul class="about-info mt-4 px-md-0 px-2">
-		            	<li class="d-flex"><span>Name:</span> <span><?php echo $rowAbout['Name']; ?></span></li>
+				    
+		            	<div id="carouselExampleControls" class="carousel slide" data-ride="carousel">
+				 	 <div class="carousel-inner">
+				    <div class="carousel-item active">
+				    	<?php 
+			         	 	$sql = "SELECT * FROM biodata WHERE id=1 ";
+			         	 	$result = mysqli_query($con,$sql);
+			         	 	$rowAbout = mysqli_fetch_assoc($result);
+
+			        	 ?>
+				    	<?php echo $rowAbout['About Me']; ?>
+				    	
+				         <li class="d-flex"><span>Name:</span> <span><?php echo $rowAbout['Name'];?></span></li>
 		            	<li class="d-flex"><span>Date of birth:</span> <span><?php echo $rowAbout['Date_of_birth']; ?></span></li>
 		            	<li class="d-flex"><span>Address:</span> <span><?php echo $rowAbout['address']; ?></span></li>
 		            	<li class="d-flex"><span>Zip code:</span> <span><?php echo $rowAbout['zip_code']; ?></span></li>
 		            	<li class="d-flex"><span>Email:</span> <span><?php echo $rowAbout['email']; ?></span></li>
-		            	<li class="d-flex"><span>Phone: </span> <span><?php echo $rowAbout['phone']; ?></span></li>
+		            	<li class="d-flex"><span>Phone: </span> <span><?php echo $rowAbout['phone'] ?></span></li>
+		                    <div class="counter-wrap ftco-animate d-flex mt-md-3">
+		                        <div class="text">
+		                          <p class="mb-4">
+		                            <span class="number" data-number="<?php echo $rowAbout['project_complate']; ?>"><?php echo $rowAbout['project_complate']; ?></span>
+		                            <span>Project complete</span>
+		                          </p>
+		                          <p><a href="#" class="btn btn-primary py-3 px-3">Download CV</a></p>
+		                        </div>
+
+		                      </div>
+					    </div>
+					    <div class="carousel-item">
+					    	<?php 
+				         	 	$sql = "SELECT * FROM biodata WHERE id=2 ";
+				         	 	$result = mysqli_query($con,$sql);
+				         	 	$rowAbout = mysqli_fetch_assoc($result);
+
+				        	 ?>
+					    	<?php echo $rowAbout['About Me']; ?>
+					    	
+				         <li class="d-flex"><span>Name:</span> <span><?php echo $rowAbout['Name']; ?></span></li>
+		            	<li class="d-flex"><span>Date of birth:</span> <span><?php echo $rowAbout['Date_of_birth'] ?></span></li>
+		            	<li class="d-flex"><span>Address:</span> <span><?php echo $rowAbout['address'] ?></span></li>
+		            	<li class="d-flex"><span>Zip code:</span> <span><?php echo $rowAbout['zip_code']; ?></span></li>
+		            	<li class="d-flex"><span>Email:</span> <span><?php echo $rowAbout['email']; ?></span></li>
+		            	<li class="d-flex"><span>Phone: </span> <span><?php echo $rowAbout['phone'] ?></span></li>
+		                    <div class="counter-wrap ftco-animate d-flex mt-md-3">
+		                        <div class="text">
+		                          <p class="mb-4">
+		                            <span class="number" data-number="<?php echo $rowAbout['project_complate']; ?>"><?php echo $rowAbout['project_complate']; ?></span>
+		                            <span>Project complete</span>
+		                          </p>
+		                          <p><a href="#" class="btn btn-primary py-3 px-3">Download CV</a></p>
+		                        </div>
+
+		                      </div>
+					    </div>
+					    <div class="carousel-item">
+					    	<?php 
+				         	 	$sql = "SELECT * FROM biodata WHERE id=3 ";
+				         	 	$result = mysqli_query($con,$sql);
+				         	 	$rowAbout = mysqli_fetch_assoc($result);
+
+				        	 ?>
+					    	<?php echo $rowAbout['About Me']; ?>
+					          <li class="d-flex"><span>Name:</span> <span><?php echo $rowAbout['Name']; ?></span></li>
+			            	<li class="d-flex"><span>Date of birth:</span> <span><?php echo $rowAbout['Date_of_birth']; ?></span></li>
+			            	<li class="d-flex"><span>Address:</span> <span><?php echo $rowAbout['address']; ?></span></li>
+			            	<li class="d-flex"><span>Zip code:</span> <span><?php echo $rowAbout['zip_code']; ?></span></li>
+			            	<li class="d-flex"><span>Email:</span> <span><?php echo $rowAbout['email']; ?></span></li>
+			            	<li class="d-flex"><span>Phone: </span> <span><?php echo $rowAbout['phone'] ?></span></li>
+			                    <div class="counter-wrap ftco-animate d-flex mt-md-3">
+			                        <div class="text">
+			                          <p class="mb-4">
+			                            <span class="number" data-number="<?php echo $rowAbout['project_complate']; ?>"><?php echo $rowAbout['project_complate']; ?></span>
+			                            <span>Project complete</span>
+			                          </p>
+			                          <p><a href="#" class="btn btn-primary py-3 px-3">Download CV</a></p>
+			                        </div>
+
+			         	            </div>
+					   			 </div>
+						  </div>
+						  <a class="carousel-control-prev" href="#carouselExampleControls" role="button" data-slide="prev">
+						    <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+						    <span class="sr-only">Previous</span>
+						  </a>
+						  <a class="carousel-control-next" href="#carouselExampleControls" role="button" data-slide="next">
+						    <span class="carousel-control-next-icon" aria-hidden="true"></span>
+						    <span class="sr-only">Next</span>
+					  </a>
+					</div>
 		            </ul>
 		          </div>
 		        </div>
