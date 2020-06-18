@@ -1,5 +1,38 @@
 <?php
 	include('connection/connection.php');
+
+	$result_form = "";
+	if($_POST){
+		$name = $_POST['name'];
+		$email_address = $_POST['email'];
+		$subject = $_POST['subject'];
+		$message = $_POST['Message'];
+
+		if($name == ''){
+			$result_form = "nama tidak boleh kosong <br>";
+		}
+		if($email_address == ''){
+			$result_form = "email tidak boleh kosong <br>";
+		}
+		if($subject == ''){
+			$result_form = "subject tidak boleh kosong <br>";
+		}
+		if($message == ''){
+			$result_form = "message tidak boleh kosong <br>";
+		}
+
+		if($result_form == ''){
+			$sql = "INSERT INTO contact_form (name,email_address,subject,message) VALUE('".$name."','".$email_address."','".$subject."','".$message."')";
+
+			if(mysqli_query($con,$sql)){
+					$result_form = "Berhasil Menyimpan Pesan Anda!";
+			}
+			else{
+					$result_form="Gagal Menyimpan Pesan Anda!";
+			}
+		}
+	}
+
 ?>
 
 <!DOCTYPE html>
@@ -89,7 +122,7 @@
     				<div class="row justify-content-start pb-3">
 		          <div class="col-md-12 heading-section ftco-animate">
 						<?php 
-				         	 	$sql = "SELECT * FROM biodata WHERE id=1";
+				         	 	$sql = "SELECT * FROM biodata WHERE id=2";
 				         	 	$result = mysqli_query($con,$sql);
 				         	 	$rowAbout = mysqli_fetch_assoc($result);
 				         ?>
@@ -161,122 +194,64 @@
 					  </nav>
 					</div>
 					<div class="col-md-9">
+
 					  <div id="page-1" class= "page one">
-					  	<h2 class="heading">Education</h2>
-					    <div class="resume-wrap d-flex ftco-animate">
-					    	<div class="icon d-flex align-items-center justify-content-center">
-					    		<span class="flaticon-ideas"></span>
-					    	</div>
-					    	<div class="text pl-3">
-		    					<span class="date">2014-2015</span>
-		    					<h2>Bachelor of Science in Computer Science</h2>
-		    					<span class="position">Cambridge University</span>
-		    					<p>A small river named Duden flows by their place and supplies it with the necessary regelialia. It is a paradisematic country, in which roasted parts of sentences fly into your mouth.</p>
-	    					</div>
-	    				</div>
-	    				<div class="resume-wrap d-flex ftco-animate">
-	    					<div class="icon d-flex align-items-center justify-content-center">
-					    		<span class="flaticon-ideas"></span>
-					    	</div>
-					    	<div class="text pl-3">
-		    					<span class="date">2014-2015</span>
-		    					<h2>Computer Processing Systems/Computer Software</h2>
-		    					<span class="position">Cambridge University</span>
-		    					<p>A small river named Duden flows by their place and supplies it with the necessary regelialia. It is a paradisematic country, in which roasted parts of sentences fly into your mouth.</p>
-		    				</div>
-	    				</div>
-	    				<div class="resume-wrap d-flex ftco-animate">
-	    					<div class="icon d-flex align-items-center justify-content-center">
-					    		<span class="flaticon-ideas"></span>
-					    	</div>
-					    	<div class="text pl-3">
-		    					<span class="date">2014-2015</span>
-		    					<h2>Diploma in Computer</h2>
-		    					<span class="position">Cambridge University</span>
-		    					<p>A small river named Duden flows by their place and supplies it with the necessary regelialia. It is a paradisematic country, in which roasted parts of sentences fly into your mouth.</p>
-		    				</div>
-	    				</div>
-	    				<div class="resume-wrap d-flex ftco-animate">
-	    					<div class="icon d-flex align-items-center justify-content-center">
-					    		<span class="flaticon-ideas"></span>
-					    	</div>
-					    	<div class="text pl-3">
-		    					<span class="date">2014-2015</span>
-		    					<h2>Art &amp; Creative Director</h2>
-		    					<span class="position">Cambridge University</span>
-		    					<p>A small river named Duden flows by their place and supplies it with the necessary regelialia. It is a paradisematic country, in which roasted parts of sentences fly into your mouth.</p>
-		    				</div>
-	    				</div>
+					  <h2 class="heading">Education</h2>
+					 
+						<?php 
+						$sql ="SELECT * FROM education";
+						$result = mysqli_query($con,$sql);
+						if(mysqli_num_rows($result)>0){
+							while($rowEdu = mysqli_fetch_assoc($result)){
+								?>
+								<div class="resume-wrap d-flex ftco-animate">
+							    	<div class="icon d-flex align-items-center justify-content-center">
+							    		<span class="flaticon-ideas"></span>
+							    	</div>
+							    	<div class="text pl-3">
+				    					<span class="date"><?php echo $rowEdu['start'];?> - <?php echo ($rowEdu['end'] == 0 )?'Present' : $rowEdu['end'] ; ?></span>
+				    					<h2><?php echo $rowEdu['title']; ?></h2>
+				    					<span class="position"><?php echo $rowEdu['school']; ?></span>
+				    					<p><?php echo $rowEdu['edu']; ?></p>
+			    					</div>
+		    					</div>
+								<?php
+							}
+						}
+					 ?>
+					
 					  </div>
 
 					  <div id="page-2" class= "page two">
 					  	<h2 class="heading">Experience</h2>
-					    <div class="resume-wrap d-flex ftco-animate">
-					    	<div class="icon d-flex align-items-center justify-content-center">
-					    		<span class="flaticon-ideas"></span>
-					    	</div>
-					    	<div class="text pl-3">
-		    					<span class="date">2014-2015</span>
-		    					<h2>Software Developer</h2>
-		    					<span class="position">Cambridge University</span>
-		    					<p>A small river named Duden flows by their place and supplies it with the necessary regelialia. It is a paradisematic country, in which roasted parts of sentences fly into your mouth.</p>
-		    				</div>
-	    				</div>
-	    				<div class="resume-wrap d-flex ftco-animate">
-	    					<div class="icon d-flex align-items-center justify-content-center">
-					    		<span class="flaticon-ideas"></span>
-					    	</div>
-					    	<div class="text pl-3">
-		    					<span class="date">2014-2015</span>
-		    					<h2>Web Designer</h2>
-		    					<span class="position">Cambridge University</span>
-		    					<p>A small river named Duden flows by their place and supplies it with the necessary regelialia. It is a paradisematic country, in which roasted parts of sentences fly into your mouth.</p>
-		    				</div>
-	    				</div>
-	    				<div class="resume-wrap d-flex ftco-animate">
-	    					<div class="icon d-flex align-items-center justify-content-center">
-					    		<span class="flaticon-ideas"></span>
-					    	</div>
-					    	<div class="text pl-3">
-		    					<span class="date">2014-2015</span>
-		    					<h2>Web Marketing</h2>
-		    					<span class="position">Cambridge University</span>
-		    					<p>A small river named Duden flows by their place and supplies it with the necessary regelialia. It is a paradisematic country, in which roasted parts of sentences fly into your mouth.</p>
-		    				</div>
-	    				</div>
-	    				<div class="resume-wrap d-flex ftco-animate">
-	    					<div class="icon d-flex align-items-center justify-content-center">
-					    		<span class="flaticon-ideas"></span>
-					    	</div>
-					    	<div class="text pl-3">
-		    					<span class="date">2014-2015</span>
-		    					<h2>Art &amp; Creative Director</h2>
-		    					<span class="position">Side Tech</span>
-		    					<p>A small river named Duden flows by their place and supplies it with the necessary regelialia. It is a paradisematic country, in which roasted parts of sentences fly into your mouth.</p>
-		    				</div>
-	    				</div>
-	    				<div class="resume-wrap d-flex ftco-animate">
-	    					<div class="icon d-flex align-items-center justify-content-center">
-					    		<span class="flaticon-ideas"></span>
-					    	</div>
-					    	<div class="text pl-3">
-		    					<span class="date">2014-2015</span>
-		    					<h2>Wordpress Developer</h2>
-		    					<span class="position">Cambridge University</span>
-		    					<p>A small river named Duden flows by their place and supplies it with the necessary regelialia. It is a paradisematic country, in which roasted parts of sentences fly into your mouth.</p>
-		    				</div>
-	    				</div>
-	    				<div class="resume-wrap d-flex ftco-animate">
-	    					<div class="icon d-flex align-items-center justify-content-center">
-					    		<span class="flaticon-ideas"></span>
-					    	</div>
-					    	<div class="text pl-3">
-		    					<span class="date">2017-2018</span>
-		    					<h2>UI/UX Designer</h2>
-		    					<span class="position">Cambridge University</span>
-		    					<p>A small river named Duden flows by their place and supplies it with the necessary regelialia. It is a paradisematic country, in which roasted parts of sentences fly into your mouth.</p>
-		    				</div>
-	    				</div>
+					    
+						 <?php 
+							 $sql = "SELECT * FROM experiences";
+							 $result = mysqli_query($con, $sql);
+							 if(mysqli_num_rows($result)> 0){
+								 while($rowExp = mysqli_fetch_assoc($result)){
+									 ?>
+ 								<div class="resume-wrap d-flex ftco-animate">
+					    			<div class="icon d-flex align-items-center justify-content-center">
+					    			<span class="flaticon-ideas"></span>
+					    		</div>
+					    		<div class="text pl-3">
+
+									<!-- Start & End -->
+		    						<span class="date"><?php echo $rowExp['start']; ?> - <?php echo $rowExp['end']; ?></span>
+									
+									<!-- Label -->
+									<h2><?php echo $rowExp['label']; ?> </h2>
+		    						<span class="position"><?php echo $rowExp['school']; ?></span>
+									<!-- content -->
+		    						<p><?php echo $rowExp['content']; ?></p>
+			    					</div>
+		    					</div>	
+									 <?php
+								 }
+							 }
+						 ?>
+
 					  </div>
 					  <div id="page-3" class= "page three">
 					  	<h2 class="heading">Skills</h2>
@@ -430,108 +405,71 @@
 
     <section class="ftco-section ftco-project" id="projects-section">
     	<div class="container-fluid px-md-0">
-    		<div class="row no-gutters justify-content-center pb-5">
+    	<div class="row no-gutters justify-content-center pb-5">
           <div class="col-md-12 heading-section text-center ftco-animate">
           	<h1 class="big big-2">Projects</h1>
             <h2 class="mb-4">Our Projects</h2>
             <p>Far far away, behind the word mountains, far from the countries Vokalia and Consonantia</p>
           </div>
         </div>
-    		<div class="row no-gutters">
-    			<div class="col-md-4">
-    				<div class="project img ftco-animate d-flex justify-content-center align-items-center" style="background-image: url(images/work-1.jpg);">
+    	
+		<?php 
+        	$sql = "SELECT * FROM gallery_project";
+        	$result = mysqli_query($con,$sql);
+        	if(mysqli_num_rows($result)>0){
+        		$i=0;
+        		while($rowProject = mysqli_fetch_assoc($result)){
+        			if($i==0){
+        				echo '<div class="row no-gutters">';
+        			}
+        			?>
+					<div class="col-md-4">
+    				<div class="project img ftco-animate d-flex justify-content-center align-items-center" style="background-image: url('images/project/<?php echo $rowProject['id'];?>.jpg');">
     					<div class="overlay"></div>
 	    				<div class="text text-center p-4">
-	    					<h3><a href="#">Branding &amp; Illustration Design</a></h3>
-	    					<span>Web Design</span>
+	    					<h3><a href="#"><?php echo $rowProject['title']; ?></a></h3>
+	    					<span><?php echo $rowProject['sub_title']; ?></span>
 	    				</div>
-    				</div>
-  				</div>
-  				<div class="col-md-4">
-    				<div class="project img ftco-animate d-flex justify-content-center align-items-center" style="background-image: url(images/work-2.jpg);">
-    					<div class="overlay"></div>
-	    				<div class="text text-center p-4">
-	    					<h3><a href="#">Branding &amp; Illustration Design</a></h3>
-	    					<span>Web Design</span>
 	    				</div>
-    				</div>
-  				</div>
+	    			</div>
 
-    			<div class="col-md-4">
-    				<div class="project img ftco-animate d-flex justify-content-center align-items-center" style="background-image: url(images/work-3.jpg);">
-    					<div class="overlay"></div>
-	    				<div class="text text-center p-4">
-	    					<h3><a href="#">Branding &amp; Illustration Design</a></h3>
-	    					<span>Web Design</span>
-	    				</div>
-    				</div>
-    			</div>
-    			<div class="col-md-4">
-    				<div class="project img ftco-animate d-flex justify-content-center align-items-center" style="background-image: url(images/work-4.jpg);">
-    					<div class="overlay"></div>
-	    				<div class="text text-center p-4">
-	    					<h3><a href="#">Branding &amp; Illustration Design</a></h3>
-	    					<span>Web Design</span>
-	    				</div>
-    				</div>
-    			</div>
-    			<div class="col-md-4">
-    				<div class="project img ftco-animate d-flex justify-content-center align-items-center" style="background-image: url(images/work-5.jpg);">
-    					<div class="overlay"></div>
-	    				<div class="text text-center p-4">
-	    					<h3><a href="#">Branding &amp; Illustration Design</a></h3>
-	    					<span>Web Design</span>
-	    				</div>
-    				</div>
-    			</div>
-    			<div class="col-md-4">
-    				<div class="project img ftco-animate d-flex justify-content-center align-items-center" style="background-image: url(images/work-6.jpg);">
-    					<div class="overlay"></div>
-	    				<div class="text text-center p-4">
-	    					<h3><a href="#">Branding &amp; Illustration Design</a></h3>
-	    					<span>Web Design</span>
-	    				</div>
-    				</div>
-    			</div>
-    		</div>
+        			<?php
+        			$i=$rowProject['id'];
+        			if($i==3){
+        				echo '</div>';
+        				$i=0;
+        			}
+        		}
+        	}
+    		?>
+
     	</div>
     </section>
 
     <section class="ftco-section ftco-no-pt ftco-no-pb ftco-counter img" id="section-counter">
     	<div class="container-fluid px-md-5">
-				<div class="row d-md-flex align-items-center">
-          <div class="col-md d-flex justify-content-center counter-wrap ftco-animate">
-            <div class="block-18 shadow">
-              <div class="text">
-                <strong class="number" data-number="100">0</strong>
-                <span>Awards</span>
-              </div>
-            </div>
-          </div>
-          <div class="col-md d-flex justify-content-center counter-wrap ftco-animate">
-            <div class="block-18 shadow">
-              <div class="text">
-                <strong class="number" data-number="1200">0</strong>
-                <span>Complete Projects</span>
-              </div>
-            </div>
-          </div>
-          <div class="col-md d-flex justify-content-center counter-wrap ftco-animate">
-            <div class="block-18 shadow">
-              <div class="text">
-                <strong class="number" data-number="1200">0</strong>
-                <span>Happy Customers</span>
-              </div>
-            </div>
-          </div>
-          <div class="col-md d-flex justify-content-center counter-wrap ftco-animate">
-            <div class="block-18 shadow">
-              <div class="text">
-                <strong class="number" data-number="500">0</strong>
-                <span>Cups of coffee</span>
-              </div>
-            </div>
-          </div>
+		<div class="row d-md-flex align-items-center">
+			<?php 
+        	$sql = "SELECT * FROM temp";
+        	$result = mysqli_query($con,$sql);
+        	if(mysqli_num_rows($result)>0){
+        		while($rowTemp = mysqli_fetch_assoc($result)){
+        		?>
+        		
+		         <div class="col-md d-flex justify-content-center counter-wrap ftco-animate">
+		            <div class="block-18 shadow">
+		              <div class="text">
+		                <strong class="number" data-number="<?php echo $rowTemp['total'] ?>"><?php echo $rowTemp['total']; ?></strong>
+		                <span><?php  echo $rowTemp['label']; ?></span>
+		              </div>
+		            </div>
+				</div>
+
+        			<?php
+        		}
+        	}
+    		?>
+
         </div>
       </div>
     </section>
@@ -546,59 +484,45 @@
             <p>Far far away, behind the word mountains, far from the countries Vokalia and Consonantia</p>
           </div>
         </div>
-        <div class="row d-flex">
-          <div class="col-md-4 d-flex ftco-animate">
-          	<div class="blog-entry justify-content-end">
-              <a href="single.html" class="block-20" style="background-image: url('images/image_1.jpg');">
-              </a>
-              <div class="text mt-3 float-right d-block">
-                <h3 class="heading"><a href="single.html">Why Lead Generation is Key for Business Growth</a></h3>
-                <div class="d-flex align-items-center mb-3 meta">
-	                <p class="mb-0">
-	                	<span class="mr-2">Sept. 12, 2019</span>
-	                	<a href="#" class="mr-2">Admin</a>
-	                	<a href="#" class="meta-chat"><span class="icon-chat"></span> 3</a>
-	                </p>
-                </div>
-                <p>A small river named Duden flows by their place and supplies it with the necessary regelialia.</p>
-              </div>
-            </div>
-          </div>
-          <div class="col-md-4 d-flex ftco-animate">
-          	<div class="blog-entry justify-content-end">
-              <a href="single.html" class="block-20" style="background-image: url('images/image_2.jpg');">
-              </a>
-              <div class="text mt-3 float-right d-block">
-                <h3 class="heading"><a href="single.html">Why Lead Generation is Key for Business Growth</a></h3>
-                <div class="d-flex align-items-center mb-3 meta">
-	                <p class="mb-0">
-	                	<span class="mr-2">Sept. 12, 2019</span>
-	                	<a href="#" class="mr-2">Admin</a>
-	                	<a href="#" class="meta-chat"><span class="icon-chat"></span> 3</a>
-	                </p>
-                </div>
-                <p>A small river named Duden flows by their place and supplies it with the necessary regelialia.</p>
-              </div>
-            </div>
-          </div>
-          <div class="col-md-4 d-flex ftco-animate">
-          	<div class="blog-entry">
-              <a href="single.html" class="block-20" style="background-image: url('images/image_3.jpg');">
-              </a>
-              <div class="text mt-3 float-right d-block">
-                <h3 class="heading"><a href="single.html">Why Lead Generation is Key for Business Growth</a></h3>
-                <div class="d-flex align-items-center mb-3 meta">
-	                <p class="mb-0">
-	                	<span class="mr-2">Sept. 12, 2019</span>
-	                	<a href="#" class="mr-2">Admin</a>
-	                	<a href="#" class="meta-chat"><span class="icon-chat"></span> 3</a>
-	                </p>
-                </div>
-                <p>A small river named Duden flows by their place and supplies it with the necessary regelialia.</p>
-              </div>
-            </div>
-          </div>
-        </div>
+		
+		<?php 
+			$sql = "SELECT * FROM blog";
+			$result = mysqli_query($con,$sql);
+			if(mysqli_num_rows($result)> 0){
+				$i=0;
+				while($rowBlog = mysqli_fetch_assoc($result)){
+					if($i==0){
+						echo '<div class="row d-flex">';
+					}
+
+					?>
+					 <div class="col-md-4 d-flex ftco-animate">
+			          	<div class="blog-entry justify-content-end">
+			              <a href="single.html" class="block-20" style="background-image: url('images/blog/<?php echo $rowBlog['id']?>.jpg');">
+			              </a>
+			              <div class="text mt-3 float-right d-block">
+			                <h3 class="heading"><a href="single.html"><?php echo $rowBlog['label']; ?></a></h3>
+			                <div class="d-flex align-items-center mb-3 meta">
+				                <p class="mb-0">
+				                	<span class="mr-2"><?php echo $rowBlog['month'];?>. <?php echo $rowBlog['date']; ?>, <?php echo $rowBlog['year']; ?></span>
+				                	<a href="#" class="mr-2"><?php echo $rowBlog['name']; ?></a>
+				                	<a href="#" class="meta-chat"><span class="icon-chat"></span> 3</a>
+				                </p>
+			                </div>
+			                <p><?php echo $rowBlog['content']; ?></p>
+			              </div>
+			            </div>
+			          </div>
+					<?php
+					$i=$rowBlog['id'];
+					if($i==3){
+						echo '</div>';
+						$i=0;
+					}
+				}
+			}
+		 ?>
+        
       </div>
     </section>
 
@@ -626,69 +550,50 @@
         </div>
 
         <div class="row d-flex contact-info mb-5">
-          <div class="col-md-6 col-lg-3 d-flex ftco-animate">
-          	<div class="align-self-stretch box text-center p-4 shadow">
-          		<div class="icon d-flex align-items-center justify-content-center">
-          			<span class="icon-map-signs"></span>
-          		</div>
-          		<div>
-	          		<h3 class="mb-4">Address</h3>
-		            <p>198 West 21th Street, Suite 721 New York NY 10016</p>
+		<!--  -->
+        <?php 
+     	$sql= "SELECT * FROM contact_me";
+     	$result = mysqli_query($con,$sql);
+     	if(mysqli_num_rows($result)>0){
+     		while($rowContact_Me = mysqli_fetch_assoc($result)){
+     		?>
+		        <div class="col-md-6 col-lg-3 d-flex ftco-animate">
+	          	<div class="align-self-stretch box text-center p-4 shadow">
+	          		<div class="icon d-flex align-items-center justify-content-center">
+	          			<span class="<?php echo $rowContact_Me['icon'] ?>"></span>
+		          		</div>
+		          		<div>
+			          		<h3 class="mb-4"><?php echo $rowContact_Me['label']; ?></h3>
+				            <p><a href="<?php echo $rowContact_Me['link'] ?>"><?php echo $rowContact_Me['content']; ?></a></p>
+				          </div>
+		       		   </div>
 		          </div>
-	          </div>
-          </div>
-          <div class="col-md-6 col-lg-3 d-flex ftco-animate">
-          	<div class="align-self-stretch box text-center p-4 shadow">
-          		<div class="icon d-flex align-items-center justify-content-center">
-          			<span class="icon-phone2"></span>
-          		</div>
-          		<div>
-	          		<h3 class="mb-4">Contact Number</h3>
-		            <p><a href="tel://1234567920">+ 1235 2355 98</a></p>
-	            </div>
-	          </div>
-          </div>
-          <div class="col-md-6 col-lg-3 d-flex ftco-animate">
-          	<div class="align-self-stretch box text-center p-4 shadow">
-          		<div class="icon d-flex align-items-center justify-content-center">
-          			<span class="icon-paper-plane"></span>
-          		</div>
-          		<div>
-	          		<h3 class="mb-4">Email Address</h3>
-		            <p><a href="mailto:info@yoursite.com">info@yoursite.com</a></p>
-		          </div>
-	          </div>
-          </div>
-          <div class="col-md-6 col-lg-3 d-flex ftco-animate">
-          	<div class="align-self-stretch box text-center p-4 shadow">
-          		<div class="icon d-flex align-items-center justify-content-center">
-          			<span class="icon-globe"></span>
-          		</div>
-          		<div>
-	          		<h3 class="mb-4">Website</h3>
-		            <p><a href="#">yoursite.com</a></p>
-	            </div>
-	          </div>
-          </div>
+         		<?php
+         		}
+         	}
+         ?>
         </div>
 
+		<p><?php echo $result_form; ?></p>
         <div class="row no-gutters block-9">
+
           <div class="col-md-6 order-md-last d-flex">
-            <form action="#" class="bg-light p-4 p-md-5 contact-form">
+
+            <form action="#" class="bg-light p-4 p-md-5 contact-form" method="POST">
               <div class="form-group">
-                <input type="text" class="form-control" placeholder="Your Name">
+                <input type="text" name="name" class="form-control" placeholder="Your Name">
               </div>
               <div class="form-group">
-                <input type="text" class="form-control" placeholder="Your Email">
+                <input type="email" name="email" class="form-control" placeholder="Your Email" >
               </div>
               <div class="form-group">
-                <input type="text" class="form-control" placeholder="Subject">
+                <input type="text" name="subject" class="form-control" placeholder="Subject">
               </div>
               <div class="form-group">
-                <textarea name="" id="" cols="30" rows="7" class="form-control" placeholder="Message"></textarea>
+                <textarea name="Message" id="" cols="30" rows="7" class="form-control" placeholder="Message"></textarea>
               </div>
               <div class="form-group">
-                <input type="submit" value="Send Message" class="btn btn-primary py-3 px-5">
+                <input type="submit" value="submit" class="btn btn-primary py-3 px-5">
               </div>
             </form>
           
@@ -697,6 +602,7 @@
           <div class="col-md-6 d-flex">
           	<div class="img" style="background-image: url(images/about.jpg);"></div>
           </div>
+
         </div>
       </div>
     </section>
@@ -704,52 +610,24 @@
 
     <footer class="ftco-footer ftco-section">
       <div class="container">
-        <div class="row mb-5">
-          <div class="col-md">
-            <div class="ftco-footer-widget mb-4">
-              <h2 class="ftco-heading-2">About</h2>
-              <p>Far far away, behind the word mountains, far from the countries Vokalia and Consonantia, there live the blind texts.</p>
-              <ul class="ftco-footer-social list-unstyled float-md-left float-lft mt-5">
-                <li class="ftco-animate"><a href="#"><span class="icon-twitter"></span></a></li>
-                <li class="ftco-animate"><a href="#"><span class="icon-facebook"></span></a></li>
-                <li class="ftco-animate"><a href="#"><span class="icon-instagram"></span></a></li>
+        <div class="row mb-5 ">
+
+          <div class="col-md ">
+            <div class="ftco-footer-widget mb-4 text-center d-flex justify-content-center">
+              <ul class="ftco-footer-social list-unstyled float-md-left float-lft mt-5 ">
+				
+				 <?php 
+					 $sql = "SELECT * FROM social_media";
+					 $result = mysqli_query($con, $sql);
+					 if(mysqli_num_rows($result)> 0){
+						 while($rowSocial = mysqli_fetch_assoc($result)){
+							 ?>
+								<li class="ftco-animate"><a href="<?php echo $rowSocial['link']; ?>" target="_blank" ><span class="<?php echo $rowSocial['icon'];?>"></span></a></li>
+							<?php
+							 }
+						 }
+					 ?>
               </ul>
-            </div>
-          </div>
-          <div class="col-md">
-            <div class="ftco-footer-widget mb-4 ml-md-4">
-              <h2 class="ftco-heading-2">Links</h2>
-              <ul class="list-unstyled">
-                <li><a href="#"><span class="icon-long-arrow-right mr-2"></span>Home</a></li>
-                <li><a href="#"><span class="icon-long-arrow-right mr-2"></span>About</a></li>
-                <li><a href="#"><span class="icon-long-arrow-right mr-2"></span>Services</a></li>
-                <li><a href="#"><span class="icon-long-arrow-right mr-2"></span>Projects</a></li>
-                <li><a href="#"><span class="icon-long-arrow-right mr-2"></span>Contact</a></li>
-              </ul>
-            </div>
-          </div>
-          <div class="col-md">
-             <div class="ftco-footer-widget mb-4">
-              <h2 class="ftco-heading-2">Services</h2>
-              <ul class="list-unstyled">
-                <li><a href="#"><span class="icon-long-arrow-right mr-2"></span>Web Design</a></li>
-                <li><a href="#"><span class="icon-long-arrow-right mr-2"></span>Web Development</a></li>
-                <li><a href="#"><span class="icon-long-arrow-right mr-2"></span>Business Strategy</a></li>
-                <li><a href="#"><span class="icon-long-arrow-right mr-2"></span>Data Analysis</a></li>
-                <li><a href="#"><span class="icon-long-arrow-right mr-2"></span>Graphic Design</a></li>
-              </ul>
-            </div>
-          </div>
-          <div class="col-md">
-            <div class="ftco-footer-widget mb-4">
-            	<h2 class="ftco-heading-2">Have a Questions?</h2>
-            	<div class="block-23 mb-3">
-	              <ul>
-	                <li><span class="icon icon-map-marker"></span><span class="text">203 Fake St. Mountain View, San Francisco, California, USA</span></li>
-	                <li><a href="#"><span class="icon icon-phone"></span><span class="text">+2 392 3929 210</span></a></li>
-	                <li><a href="#"><span class="icon icon-envelope"></span><span class="text">info@yourdomain.com</span></a></li>
-	              </ul>
-	            </div>
             </div>
           </div>
         </div>
