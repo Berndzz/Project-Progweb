@@ -3,8 +3,8 @@ session_start();
 include ('connection/connection.php');
 
 
-if(isset($_SESSION['user']) && $_SESSION){
-
+if(isset($_SESSION['user']) && $_SESSION['user']!=null){
+   header("location:index.php");
 }
 
 if($_POST){
@@ -20,7 +20,7 @@ if($_POST){
     $_SESSION['user']['username'] = $row['username'];
     $_SESSION['user']['access_group']=$row['access_group'];
 
-    header("location:index.html");
+    header("location:index.php");
   }else{
     header("location:login.php?err=0");
   }
