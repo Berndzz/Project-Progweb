@@ -49,7 +49,6 @@ if($_POST){
     }
 
     if($validate){
-        $con = createConnection();
         $sql = "INSERT INTO education (title,start,end,school,edu,owner) VALUES ('".$title."', '".$start."', '".$end."', '".$school."', '".$edu."', '".$owner."')";
 
         if(mysqli_query($con, $sql)){
