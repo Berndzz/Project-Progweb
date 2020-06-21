@@ -51,7 +51,6 @@ include_once("commons/header.php");
               <!-- /.card-header -->
               <div class="card-body">
                   <?php
-                    $con = createConnection();
                     $sql = "SELECT * FROM education";
                     $result = mysqli_query($con, $sql);
                   ?>
