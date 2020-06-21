@@ -64,13 +64,13 @@
 
                   <div class="form-group">
                   <label for="labelStart">Start Year</label>
-                    <input type="number" class="form-control" id="start" placeholder="Enter start experiences" name="start" 
+                    <input type="text" class="form-control" id="start" placeholder="Enter start experiences" name="start" 
                     value = "">    
                   </div>
                   
                   <div class="form-group">
                   <label for="labelEnd">End Year</label>
-                    <input type="number" class="form-control" id="end" placeholder="Enter end experiences" name="end" 
+                    <input type="text" class="form-control" id="end" placeholder="Enter end experiences" name="end" 
                     value = "">    
                   </div>
 
