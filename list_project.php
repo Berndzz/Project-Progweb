@@ -84,10 +84,8 @@ include_once("commons/header.php");
                     </tr>
                     <?php
                             }
-
                         }
                     ?>
-                   
                   </tbody>
                 </table>
               </div>
