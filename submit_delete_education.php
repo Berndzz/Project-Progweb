@@ -8,7 +8,6 @@ if(!isset($_SESSION['user']) || $_SESSION['user']==null){
 
 if($_POST){
     $id= $_POST['id'];
-    $con = createConnection();
     $sql = "DELETE FROM education WHERE id = '".$id."'";
     
     if(mysqli_query($con, $sql)){
