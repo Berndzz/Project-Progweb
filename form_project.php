@@ -73,7 +73,7 @@
                     <div class="input-group">
                       <div class="custom-file">
                         <input type="file" class="custom-file-input" id="image" name="image">
-                        <label class="custom-file-label" for="exampleInputFile">Choose file</label>
+                        <label class="custom-file-label" for="image">Choose file</label>
                       </div>
                     </div>
                   </div>
@@ -92,7 +92,7 @@
       </div><!-- /.container-fluid -->
     </section>
     <!-- /.content -->
-        </div>
+</div>
 <?php
     include_once("commons/footer.php");
     include_once("commons/foot.php");
