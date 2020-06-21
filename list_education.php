@@ -9,7 +9,7 @@ include_once("commons/header.php");
       <div class="container-fluid">
         <div class="row mb-2">
           <div class="col-sm-12">
-            <h1>List Of Experiences</h1>
+            <h1>List Of Education</h1>
           </div>
           <div class="col-sm-12">
           </div>
@@ -90,7 +90,6 @@ include_once("commons/header.php");
                     </tr>
                     <?php
                             }
-
                         }
                     ?>
                    
@@ -105,7 +104,6 @@ include_once("commons/header.php");
     </section>
     <!-- /.content -->
   </div>
-
 <?php
 include_once("commons/footer.php");
 include_once("commons/foot.php");
