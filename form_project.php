@@ -92,6 +92,7 @@
       </div><!-- /.container-fluid -->
     </section>
     <!-- /.content -->
+        </div>
 <?php
     include_once("commons/footer.php");
     include_once("commons/foot.php");
