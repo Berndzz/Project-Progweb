@@ -49,11 +49,21 @@ if($_POST){
         $msg .="E-mail tidak boleh tidak boleh kosong. <br \>";
         $validate = false;
     }
+    
+    if (!filter_var($email_info, FILTER_VALIDATE_EMAIL)) {
+        $msg .="Format e-mail harus sesuai. <br \>";
+        $validate = false;
+    }
 
     if($phone == ""){
         $msg .="Nomor telepon tidak boleh tidak boleh kosong. <br \>";
         $validate = false;
     }
+    
+    if (!is_numeric($phone)) {
+        $msg .="Format nomor telepon hanya bisa angka. <br \>";
+        $validate = false;
+    }  
 
     if($project_complete == ""){
         $msg .="Project Complete tidak boleh tidak boleh kosong. <br \>";
