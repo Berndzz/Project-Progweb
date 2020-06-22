@@ -100,13 +100,13 @@
 
                   <div class="form-group">
                     <label for="Email">E-mail</label>
-                    <input type="email" class="form-control" id="email" placeholder="ex. mail@mail.com" name="email_info"
+                    <input type="text" class="form-control" id="email" placeholder="ex. mail@mail.com" name="email_info"
                     value="<?php echo ($row!=null)?$row['email_info']:""; ?>">
                   </div>
 
                   <div class="form-group">
                     <label for="Phone">Phone</label>
-                    <input type="number" class="form-control" id="phone" placeholder="ex. 08123456789" name="phone"
+                    <input type="text" class="form-control" id="phone" placeholder="ex. 08123456789" name="phone"
                     value="<?php echo ($row!=null)?$row['phone']:""; ?>">
                   </div>
 
