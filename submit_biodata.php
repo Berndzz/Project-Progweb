@@ -44,6 +44,11 @@ if($_POST){
         $msg .="Zip code tidak boleh tidak boleh kosong. <br \>";
         $validate = false;
     }
+    
+    if (!is_numeric($zip_code)) {
+        $msg .="Format zip code telepon hanya bisa angka. <br \>";
+        $validate = false;
+    }
 
     if($email_info == ""){
         $msg .="E-mail tidak boleh tidak boleh kosong. <br \>";
