@@ -46,7 +46,7 @@ if($_POST){
     }
     
     if (!is_numeric($zip_code)) {
-        $msg .="Format zip code telepon hanya bisa angka. <br \>";
+        $msg .="Format zip code hanya bisa angka. <br \>";
         $validate = false;
     }
 
