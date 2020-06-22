@@ -94,7 +94,7 @@
 
                   <div class="form-group">
                     <label for="ZipCode">Zip Code</label>
-                    <input type="number" class="form-control" id="zip" placeholder="ex. 58271" name="zip_code"
+                    <input type="text" class="form-control" id="zip" placeholder="ex. 58271" name="zip_code"
                     value="<?php echo ($row!=null)?$row['zip_code']:""; ?>">
                   </div>
 
