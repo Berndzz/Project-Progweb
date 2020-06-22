@@ -34,6 +34,11 @@ if($_POST){
         $msg .="Address tidak boleh tidak boleh kosong. <br \>";
         $validate = false;
     }
+    
+    if (!ctype_alnum($name_info)) {
+        $msg .="Nama hanya boleh alphanumeric. <br \>";
+        $validate = false;
+    }  
 
     if($zip_code == ""){
         $msg .="Zip code tidak boleh tidak boleh kosong. <br \>";
